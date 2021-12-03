@@ -28,7 +28,12 @@
 
         ////////////////////////////////////////////////////////////////////////
         // ALL YOUR CODE GOES BELOW HERE ///////////////////////////////////////
-        
+        createPlatform(600, 500);           // normal platform
+createPlatform(500, 380, 0.3) ;      // small horizontal platform (200% the normal width)
+createPlatform(480, 500, 0.3, 10);   // tall vertical wall (30% the normal width and 10x the height)
+        createPlatform(200, 600);           // normal platform
+
+
         /*
          * ground : here, we create a floor. Given the width of of the platform 
          * asset, giving it a scaleX and scaleY of 2 will stretch it across the 
@@ -37,7 +42,7 @@
         createPlatform(0, game.world.height - 32, 3, 2);    // DO NOT DELETE
 
         // example:
-        createPlatform(400, 250);
+        createPlatform(600, 300);
         createPlatform(170, 460, 0.5);
         
         // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
