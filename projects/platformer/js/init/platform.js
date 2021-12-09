@@ -30,7 +30,7 @@
         // ALL YOUR CODE GOES BELOW HERE ///////////////////////////////////////
         createPlatform(600, 500);           // normal platform
 createPlatform(500, 380, 0.3) ;      // small horizontal platform (200% the normal width)
-createPlatform(480, 500, 0.3, 10);   // tall vertical wall (30% the normal width and 10x the height)
+createPlatform(480, 520, 0.3, 10);   // tall vertical wall (30% the normal width and 10x the height)
         createPlatform(200, 600);           // normal platform
 
 
