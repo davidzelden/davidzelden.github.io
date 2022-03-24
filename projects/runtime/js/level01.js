@@ -16,17 +16,20 @@ var level01 = function (window) {
             "number": 1, 
             "speed": -3,
             "gameItems": [
-                { "type": "sawblade", "x": 400, "y": groundY - 50},
-                { "type": "sawblade", "x": 600, "y": groundY - 50},
-                { "type": "sawblade", "x": 800, "y": groundY - 50},
+                { "type": "sawblade", "x": 600, "y": groundY - 115},
+                { "type": "sawblade", "x": 1060, "y": groundY - 20},
+                { "type": "sawblade", "x": 1480, "y": groundY - 30},
+                { "type": "sawblade", "x": 1600, "y": groundY - 20},
+                { "type": "sawblade", "x": 1950, "y": groundY - 115},
+                { "type": "sawblade", "x": 2180, "y": groundY - 30},
 
-                { "type": "enemies", "x": 500, "y": groundY - 50},
-                { "type": "enemies", "x": 700, "y": groundY - 50},
-                { "type": "enemies", "x": 900, "y": groundY - 50},
+                { "type": "enemies", "x": 1000, "y": groundY - 70},
+                { "type": "enemies", "x": 1380, "y": groundY - 30},
+                { "type": "enemies", "x": 1700, "y": groundY - 50},
 
-                { "type": "reward", "x": 2000, "y": groundY - 60},
-                { "type": "reward", "x": 1000, "y": groundY - 60},
-                { "type": "reward", "x": 700, "y": groundY - 60},
+                { "type": "reward", "x": 2000, "y": groundY - 30},
+                { "type": "reward", "x": 1500, "y": groundY - 65},
+                { "type": "reward", "x": 950, "y": groundY - 70},
             ]
         };
         window.levelData = levelData;
@@ -42,14 +45,14 @@ var level01 = function (window) {
         sawBladeHitZone.x = x;//this is the saw blade x coordinate
         sawBladeHitZone.y = y;// this is the saw blade's y coordinate
         game.addGameItem(sawBladeHitZone);///this draws the blade on the hitzone
+        
                 
         var obstacleImage = draw.bitmap('img/sawblade.png');// this puts the blade over the hitzone
         sawBladeHitZone.addChild(obstacleImage); //this is the image for the blade
         obstacleImage.x = -25;//relative x coordinate
         obstacleImage.y = -25;//relative y coordinate
+        
 }
-      
-
 
 
 //TODO 7
@@ -66,7 +69,7 @@ function createEnemy(x, y){
 
         game.addGameItem(enemy);
         enemy.velocityX = -3;
-        enemy.rotationalVelocity = 100;
+        enemy.rotationalVelocity = 80;
 
         enemy.onPlayerCollision = function() {
             console.log('The enemy has hit Halle');
@@ -91,7 +94,15 @@ function createReward(x, y){
         reward.y = y;//y coordinate relative to ground
 
         game.addGameItem(reward);
-        reward.velocityX = -1 ;
+        reward.velocityX = -2 ;
+        reward.rotationalVelocity = 5;
+
+        reward.onProjectileCollision = function(){
+            console.log("The player has hit the reward");
+            game.changeIntegrity(5);
+            game.increaseScore(50);
+            reward.fadeOut();
+        };
 
 };
 
