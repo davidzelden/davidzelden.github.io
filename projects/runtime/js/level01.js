@@ -41,9 +41,11 @@ var level01 = function (window) {
 
 
                 { "type": "enemies2", "x": 3850, "y": groundY - 70},
-                { "type": "enemies2", "x": 4150, "y": groundY - 60},
+                { "type": "enemies2", "x": 4150, "y": groundY - 40},
                 { "type": "enemies2", "x": 4550, "y": groundY - 60},
-                { "type": "enemies2", "x": 5300, "y": groundY - 30},
+                { "type": "enemies2", "x": 5300, "y": groundY - 53},
+                { "type": "enemies2", "x": 5800, "y": groundY - 65},
+                { "type": "enemies2", "x": 6200, "y": groundY - 45},
 
 
                 { "type": "reward2", "x": 2900, "y": groundY - 30},
@@ -73,7 +75,7 @@ var level01 = function (window) {
         sawBladeHitZone.addChild(obstacleImage); //this is the image for the blade
         obstacleImage.x = -25;//relative x coordinate
         obstacleImage.y = -25;//relative y coordinate
-        
+        sawBladeHitZone.rotationalVelocity = 30;//this rotates the image of the sawblade
 }
     function createFireBall(x, y){
         var hitZoneSize = 25;//creates the hitbox
@@ -88,115 +90,124 @@ var level01 = function (window) {
         fireBallHitZone.addChild(obstacleImage); //this is the image for the fire ball
         obstacleImage.x = -26;//relative x coordinate
         obstacleImage.y = -26;//relative y coordinate
-        obstacleImage.scaleX = 0.35;
-        obstacleImage.scaleY = 0.35;
+        obstacleImage.scaleX = 0.29;//size of the object horizontally
+        obstacleImage.scaleY = 0.29;//size of the object vertically
+        fireBallHitZone.rotationalVelocity = 5;//this rotates the fireball
     
 }
 
 //TODO 7
 function createEnemy(x, y){
-        var enemy = game.createGameItem('enemy',25);//this creates the value of the enemy
-        var redSquare = draw.rect(50,50,'red');//this draws the image over the hitzone
-        redSquare.x = -25;//square location x
-        redSquare.y = -25;///square location y
-        enemy.addChild(redSquare);//adds the image
+        var enemy = game.createGameItem('enemy1',25);//this creates the value of the enemy
+        var ghost = draw.bitmap('img/ghost(1).png',);//this draws the image over the hitzone
+        ghost.x = -43;// ghost location x
+        ghost.y = -45;/// ghost location y
+        enemy.addChild(ghost);//adds the image
+        ghost.scaleX = 0.10;//size of the object horizontally
+        ghost.scaleY = 0.10;//size of the object vertically
 
         enemy.x = x;//enemy x coordinate
         enemy.y = y;//y coordinate relative to ground
 
-        game.addGameItem(enemy);
-        enemy.velocityX = -3;
-        enemy.rotationalVelocity = 80;
+        game.addGameItem(enemy);//this just adds the enemy
+        enemy.velocityX = -3;//this makes the enemy go to the left
+        
 
-        enemy.onPlayerCollision = function() {
-            console.log('The enemy has hit Halle');
-            game.changeIntegrity(-100);
+        enemy.onPlayerCollision = function() {//this is the function that causes the player to take damage when it runs into the enemy
+            console.log('The enemy has hit Halle');////console log
+            game.changeIntegrity(-100);//lose health
         };
 
-        enemy.onProjectileCollision = function(){
-            console.log("The progectile has hit the enemy");
-            game.changeIntegrity(5);
-            game.increaseScore(10);
-            enemy.fadeOut();
+        enemy.onProjectileCollision = function(){//this is the function that causes the enemy to go away when shot
+            console.log("The progectile has hit the enemy");//console log
+            game.changeIntegrity(5);//gain health
+            game.increaseScore(10);//gain score
+            enemy.fadeOut();//fade away
         };
 }
 function createEnemy2(x, y){
     var enemy2 = game.createGameItem('enemy2',25);//this creates the value of the enemy
-    var yellowSquare = draw.rect(50,50,'yellow');//this draws the image over the hitzone
-    yellowSquare.x = -25;//square location x
-    yellowSquare.y = -25;///square location y
-    enemy2.addChild(yellowSquare);//adds the image
+    var ghost2 = draw.bitmap('img/ghost2.png',);//this draws the image over the hitzone
+    ghost2.x = -55;//square location x
+    ghost2.y = -65;///square location y
+    enemy2.addChild(ghost2);//adds the image
+    ghost2.scaleX = 0.13;//size of the object horizontally
+    ghost2.scaleY = 0.13;//size of the object vertically
 
     enemy2.x = x;//enemy x coordinate
     enemy2.y = y;//y coordinate relative to ground
 
-    game.addGameItem(enemy2);
-    enemy2.velocityX = -3;
-    enemy2.rotationalVelocity = 80;
+    game.addGameItem(enemy2);//this just adds the enemy
+    enemy2.velocityX = -3;//this makes the enemy go to the left
+    
 
-    enemy2.onPlayerCollision = function() {
-        console.log('The second enemy has hit Halle');
-        game.changeIntegrity(-100);
+    enemy2.onPlayerCollision = function() {//this is the function that causes the player to take damage when it runs into the enemy
+        console.log('The second enemy has hit Halle');//console log
+        game.changeIntegrity(-150);//lose health
     };
 
-    enemy2.onProjectileCollision = function(){
-        console.log("The progectile has hit the enemy");
-        game.changeIntegrity(5);
-        game.increaseScore(10);
-        enemy2.fadeOut();
+    enemy2.onProjectileCollision = function(){//this is the function that causes the enemy to go away when shot
+        console.log("The progectile has hit the enemy");//console log
+        game.changeIntegrity(5);//gain health
+        game.increaseScore(10);//gain score
+        enemy2.fadeOut();//fade away
     };
 }
 
 function createReward(x, y){
-        var reward = game.createGameItem('reward',25);
-        var blueSquare = draw.rect(50,50,'blue');
+        var reward = game.createGameItem('reward',25);///this creates the reward
+        var crystal = draw.bitmap('img/crystal.png',);///this draws the image of the crystal
 
-        blueSquare.x = -25;//square location x
-        blueSquare.y = -25;///square location y
-        reward.addChild(blueSquare);//adds the image
+        crystal.x = -45;//crystal location x
+        crystal.y = -55;///crystal location y
+        reward.addChild(crystal);//adds the image
+        crystal.scaleX = 0.10;//size of the object horizontally
+        crystal.scaleY = 0.10;//size of the object vertically
 
         reward.x = x;//reward x coordinate
         reward.y = y;//y coordinate relative to ground
 
-        game.addGameItem(reward);
-        reward.velocityX = -2 ;
-        reward.rotationalVelocity = 5;
+        game.addGameItem(reward);///this puts it on the screen
+        reward.velocityX = -2 ;//this makes the crystal go left
+       
 
-        reward.onProjectileCollision = function(){
-            console.log("The player has hit the reward");
-            game.changeIntegrity(5);
-            game.increaseScore(50);
-            reward.fadeOut();
+        reward.onProjectileCollision = function(){///this is the function that makes the reward go away when shot
+            console.log("The player has hit the reward");//console log
+            game.changeIntegrity(5);//gain health
+            game.increaseScore(50);//gain score
+            reward.fadeOut();//fade away
         };
 
 };
 function createReward2(x, y){
-    var reward2 = game.createGameItem('reward2',25);
-    var greenSquare = draw.rect(50,50,'green');
+    var reward2 = game.createGameItem('reward2',25);///this creates the reward
+    var crystal2 = draw.bitmap('img/crystal2.png',);///this draws the image of the crystal
 
-    greenSquare.x = -25;//square location x
-    greenSquare.y = -25;///square location y
-    reward2.addChild(greenSquare);//adds the image
+    crystal2.x = -32;//crystal location x
+    crystal2.y = -48;///crystal location y
+    reward2.addChild(crystal2);//adds the image
+    crystal2.scaleX = 0.10;//size of the object horizontally
+    crystal2.scaleY = 0.10;//size of the object vertically
 
     reward2.x = x;//reward x coordinate
     reward2.y = y;//y coordinate relative to ground
 
-    game.addGameItem(reward2);
-    reward2.velocityX = -2 ;
-    reward2.rotationalVelocity = 5;
+    game.addGameItem(reward2);///this puts it on the screen
+    reward2.velocityX = -2 ;//this makes the crystal go left
+    
 
-    reward2.onProjectileCollision = function(){
-        console.log("The player has hit the second reward");
-        game.changeIntegrity(5);
-        game.increaseScore(100);
-        reward2.fadeOut();
+    reward2.onProjectileCollision = function(){///this is the function that makes the reward go away when shot
+        console.log("The player has hit the second reward");//console log
+        game.changeIntegrity(5);//gain health
+        game.increaseScore(100);//gain score
+        reward2.fadeOut();//fade away
     };
 
 };
 
 
 
-for(var i = 0; i < levelData.gameItems.length; i++){
+for(var i = 0; i < levelData.gameItems.length; i++){///this is where the function to make the codes reusable whenever and are called up top
     var gameItem = levelData.gameItems[i];
 
     if(gameItem.type === "sawblade"){
