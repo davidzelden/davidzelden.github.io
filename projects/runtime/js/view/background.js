@@ -26,7 +26,9 @@ var background = function (window) {
         var background;
         
         // ANIMATION VARIABLES HERE:
-       
+        var godzilla;
+        var car;
+        var square;
         var tree;
         var tree2;
         var buildings = []; 
@@ -43,6 +45,12 @@ var background = function (window) {
             background.addChild(backgroundFill);
             
             // TODO: 3 - Add a moon and starfield
+            godzilla = draw.bitmap('img/godzilla.png');
+            godzilla.x = 600;
+            godzilla.y = 150;
+            background.addChild(godzilla);
+            godzilla.scaleX = 0.20;
+            godzilla.scaleY = 0.20;
             
             for (var i = 0;i <= 100;i++ ){///thi is the for loop for the stars
                 var circle = draw.circle(4,'white','yellow',2);///this is the design for the stars
@@ -60,6 +68,14 @@ var background = function (window) {
 
 
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
+            godzilla = draw.bitmap('img/godzilla.png');//this was put here to go behind the buildings
+            godzilla.x = 600;
+            godzilla.y = 150;
+            background.addChild(godzilla);
+            godzilla.scaleX = 0.20;
+            godzilla.scaleY = 0.20;
+
+
             for(var i=0; i<50; ++i) {
 
             var buildingHeight = 300*Math.random();
@@ -76,17 +92,35 @@ var background = function (window) {
 
             
             // TODO 4: Part 1 - Add a tree
+            
+
+            square = draw.bitmap('img/green.jpg');
+            square.x = -100;
+            square.y = 430;
+            background.addChild(square);
+            square.scaleX = 20;
+            square.scaleY = 10;
+
+            car = draw.bitmap('img/car.png');
+            car.x = 900;
+            car.y = 480;
+            background.addChild(car);
+            car.scaleX = 0.30;
+            car.scaleY = 0.30;
+
             tree = draw.bitmap('img/tree.png');
             tree.x = canvasWidth - 500;
             tree.y = groundY - 200;
             background.addChild(tree);
+            tree.scaleX = 0.40;
+            tree.scaleY = 0.40;
         
             tree2 = draw.bitmap('img/tree.png');
-            tree2.x = canvasWidth - 350;
-            tree2.y = groundY - 75;
+            tree2.x = canvasWidth - 180;
+            tree2.y = groundY - 50;
             background.addChild(tree2);
-            tree2.scaleX = 0.55;
-            tree2.scaleY = 0.55;
+            tree2.scaleX = 0.25;
+            tree2.scaleY = 0.25;
             
 
             
@@ -114,6 +148,11 @@ var background = function (window) {
 
             if(tree2.x < -200) {
                 tree2.x = canvasWidth;
+            }
+            car.x = car.x - 1;
+
+            if(car.x < -200) {
+                car.x = canvasWidth;
             }
 
             
