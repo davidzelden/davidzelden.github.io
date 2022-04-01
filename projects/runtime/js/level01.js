@@ -52,13 +52,15 @@ var level01 = function (window) {
                 { "type": "reward2", "x": 3700, "y": groundY - 65},
                 { "type": "reward2", "x": 4250, "y": groundY - 70},
                 { "type": "reward2", "x": 4400, "y": groundY - 30},
+
+              
              
 
             ]
         };
         window.levelData = levelData;
         // set this to true or false depending on if you want to see hitzones
-        game.setDebugMode(true);
+        game.setDebugMode(false);
 
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
@@ -230,6 +232,7 @@ for(var i = 0; i < levelData.gameItems.length; i++){///this is where the functio
     if(gameItem.type === "reward2"){
         createReward2(gameItem.x, gameItem.y);
     }
+    
 }
 
 

@@ -26,6 +26,7 @@ var background = function (window) {
         var background;
         
         // ANIMATION VARIABLES HERE:
+       
         var tree;
         var tree2;
         var buildings = []; 
@@ -59,15 +60,19 @@ var background = function (window) {
 
 
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-            for(var i=0; i<5; ++i) {
+            for(var i=0; i<50; ++i) {
 
-            var buildingHeight = 300;
-            var building = draw.rect(75,buildingHeight,'LightGray','Black',1);
-            building.x =  200*i;
+            var buildingHeight = 300*Math.random();
+            var building = draw.rect(75,buildingHeight,'#545454','#545454',1);
+            
+            building.x =  50*i;
             building.y = groundY-buildingHeight;
             background.addChild(building);
             buildings.push(building);
         }
+        
+
+
 
             
             // TODO 4: Part 1 - Add a tree
